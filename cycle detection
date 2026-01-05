@@ -1,0 +1,41 @@
+// Problem: Detect if a linked list has a cycle.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct ListNode {
+    int val;
+    struct ListNode *next;
+};
+
+int hasCycle(struct ListNode *head) {
+    if (head == NULL || head->next == NULL) return 0;
+
+    struct ListNode *slow = head, *fast = head;
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast) {
+            return 1;  // Cycle detected
+        }
+    }
+    return 0;  // No cycle
+}
+
+int main() {
+    struct ListNode *head = malloc(sizeof(struct ListNode));
+    head->val = 1;
+    head->next = malloc(sizeof(struct ListNode));
+    head->next->val = 2;
+    head->next->next = malloc(sizeof(struct ListNode));
+    head->next->next->val = 3;
+    head->next->next->next = head->next;  // Cycle here
+
+    if (hasCycle(head)) {
+        printf("Cycle detected\n");
+    } else {
+        printf("No cycle detected\n");
+    }
+
+    return 0;
+}
