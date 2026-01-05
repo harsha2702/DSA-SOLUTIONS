@@ -1,0 +1,28 @@
+// Problem: Find the second largest element in an array.
+
+#include <stdio.h>
+
+int findSecondLargest(int arr[], int size) {
+    int largest = arr[0];
+    int secondLargest = -1;
+
+    for (int i = 1; i < size; i++) {
+        if (arr[i] > largest) {
+            secondLargest = largest;
+            largest = arr[i];
+        } else if (arr[i] > secondLargest && arr[i] != largest) {
+            secondLargest = arr[i];
+        }
+    }
+
+    return secondLargest;
+}
+
+int main() {
+    int arr[] = {12, 35, 1, 10, 34, 1};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    
+    printf("Second largest element: %d\n", findSecondLargest(arr, size));  // Output: 34
+
+    return 0;
+}
