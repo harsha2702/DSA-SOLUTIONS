@@ -1,0 +1,86 @@
+// Problem: Multiply two matrices
+
+#include <stdio.h>
+
+#define MAX 10
+
+void multiplyMatrices(int A[MAX][MAX], int B[MAX][MAX], int C[MAX][MAX], int rowA, int colA, int rowB, int colB) {
+    if (colA != rowB) {
+        printf("Matrix multiplication is not possible.\n");
+        return;
+    }
+
+    for (int i = 0; i < rowA; i++) {
+        for (int j = 0; j < colB; j++) {
+            C[i][j] = 0;
+            for (int k = 0; k < colA; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
+void printMatrix(int matrix[MAX][MAX], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int A[2][3] = {{1, 2, 3}, {4, 5, 6}};
+    int B[3][2] = {{7, 8}, {9, 10}, {11, 12}};
+    int C[2][2];
+
+    multiplyMatrices(A, B, C, 2, 3, 3, 2);
+
+    printf("Resultant matrix after multiplication:\n");
+    printMatrix(C, 2, 2);  // Output: Resultant matrix after multiplication: 58 64 139 154
+
+    return 0;
+}
+// Problem: Multiply two matrices
+
+#include <stdio.h>
+
+#define MAX 10
+
+void multiplyMatrices(int A[MAX][MAX], int B[MAX][MAX], int C[MAX][MAX], int rowA, int colA, int rowB, int colB) {
+    if (colA != rowB) {
+        printf("Matrix multiplication is not possible.\n");
+        return;
+    }
+
+    for (int i = 0; i < rowA; i++) {
+        for (int j = 0; j < colB; j++) {
+            C[i][j] = 0;
+            for (int k = 0; k < colA; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
+void printMatrix(int matrix[MAX][MAX], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int A[2][3] = {{1, 2, 3}, {4, 5, 6}};
+    int B[3][2] = {{7, 8}, {9, 10}, {11, 12}};
+    int C[2][2];
+
+    multiplyMatrices(A, B, C, 2, 3, 3, 2);
+
+    printf("Resultant matrix after multiplication:\n");
+    printMatrix(C, 2, 2);  // Output: Resultant matrix after multiplication: 58 64 139 154
+
+    return 0;
+}
