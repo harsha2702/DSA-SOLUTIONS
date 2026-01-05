@@ -1,0 +1,54 @@
+// Problem: Solve the Activity Selection Problem using a greedy approach.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Activity structure to represent start and finish times
+struct Activity {
+    int start;
+    int finish;
+};
+
+// Comparison function to sort activities by their finish times
+int compare(const void* a, const void* b) {
+    return ((struct Activity*)a)->finish - ((struct Activity*)b)->finish;
+}
+
+void selectActivities(struct Activity arr[], int n) {
+    // Sort activities based on their finish times
+    qsort(arr, n, sizeof(struct Activity), compare);
+
+    // The first activity is always selected
+    int i = 0;
+    printf("Selected activities: \n");
+    printf("Activity %d (%d-%d)\n", i + 1, arr[i].start, arr[i].finish);
+
+    // Consider the rest of the activities
+    for (int j = 1; j < n; j++) {
+        if (arr[j].start >= arr[i].finish) { // If the activity starts after the last selected activity finishes
+            printf("Activity %d (%d-%d)\n", j + 1, arr[j].start, arr[j].finish);
+            i = j;  // Update the last selected activity
+        }
+    }
+}
+
+int main() {
+    struct Activity activities[] = {
+        {1, 4},
+        {3, 5},
+        {0, 6},
+        {5, 7},
+        {3, 8},
+        {5, 9},
+        {6, 10},
+        {8, 11},
+        {8, 12},
+        {2, 13},
+        {12, 14}
+    };
+    int n = sizeof(activities) / sizeof(activities[0]);
+
+    selectActivities(activities, n);  // Output the selected activities based on their finish times
+
+    return 0;
+}
