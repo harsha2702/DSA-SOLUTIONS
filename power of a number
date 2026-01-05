@@ -1,0 +1,18 @@
+// Problem: Calculate the power of a number using recursion
+
+#include <stdio.h>
+
+int power(int base, int exp) {
+    if (exp == 0) {
+        return 1;  // Base case: any number raised to the power of 0 is 1
+    }
+    return base * power(base, exp - 1);
+}
+
+int main() {
+    int base = 2, exp = 5;
+    
+    printf("%d raised to the power of %d is: %d\n", base, exp, power(base, exp));  // Output: 32
+
+    return 0;
+}
