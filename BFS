@@ -1,0 +1,68 @@
+// Problem: Perform BFS on a graph represented using adjacency list.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+
+#define MAX_VERTICES 100
+
+// Queue structure
+struct Queue {
+    int items[MAX_VERTICES];
+    int front;
+    int rear;
+};
+
+void initQueue(struct Queue* q) {
+    q->front = 0;
+    q->rear = -1;
+}
+
+bool isQueueEmpty(struct Queue* q) {
+    return q->rear == -1;
+}
+
+void enqueue(struct Queue* q, int value) {
+    if (q->rear == MAX_VERTICES - 1) {
+        printf("Queue is full\n");
+    } else {
+        q->items[++q->rear] = value;
+    }
+}
+
+int dequeue(struct Queue* q) {
+    if (isQueueEmpty(q)) {
+        printf("Queue is empty\n");
+        return -1;
+    } else {
+        return q->items[q->front++];
+    }
+}
+
+// Graph structure
+struct Graph {
+    int vertices;
+    int adj[MAX_VERTICES][MAX_VERTICES];
+};
+
+void initGraph(struct Graph* g, int vertices) {
+    g->vertices = vertices;
+    for (int i = 0; i < vertices; i++) {
+        for (int j = 0; j < vertices; j++) {
+            g->adj[i][j] = 0; // No edges initially
+        }
+    }
+}
+
+void addEdge(struct Graph* g, int u, int v) {
+    g->adj[u][v] = 1;
+    g->adj[v][u] = 1; // For undirected graph
+}
+
+void bfs(struct Graph* g, int start) {
+    bool visited[MAX_VERTICES];
+    memset(visited, false, sizeof(visited));
+
+    struct Queue q;
+    i
